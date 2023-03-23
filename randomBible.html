@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Gowun Batang';
+            background-image: url('https://ifh.cc/g/DpaSql.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: rgb(49, 48, 48);
+        }
+
+        .outer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 200px;
+        }
+
+        .first {
+            text-align: center;
+        }
+
+        #name {
+            width: 300px;
+            height: 50px;
+            border-radius: 10px;
+            font-size: medium;
+            font-family: 'Gowun Batang';
+            text-align: center;
+        }
+
+        #addbtn {
+            width: 60px;
+            height: 50px;
+            border-radius: 10px;
+            font-size: medium;
+            font-family: 'Gowun Batang';
+        }
+
+        .second {
+            text-align: center;
+            display: none;
+            width: 800px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.655);
+            border-radius: 15px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+    <title>2023 말씀 뽑기</title>
+</head>
+<body>
+    <div class="outer">
+        <h1 style="font-weight: bolder;  color:black">2023 말씀 뽑기</h1>
+        <div class="first">
+            <input type="text" id="name" placeholder="이름을 작성해주세요" value="">
+            <button id="addbtn" onclick="nameAdd()">클릭!</button>
+        </div>
+
+        <div class="second">
+        </div>
+    </div>
+
+    <script>
+        const inputText = document.getElementById("name");
+        const firstDiv = document.querySelector('.first');
+        const secondDiv = document.querySelector('.second');
+        const $button = document.getElementById('addbtn');
+        
+
+        bible = ['너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라 너는 범사에 그를 인정하라 그리하면 네 길을 지도하시리라<br>잠언 3장5-6절',
+        '내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라 <br> 빌립보서 4장 13절',
+        '사랑하는 자여 네 영혼이 잘됨 같이 네가 범사에 잘되고 강건하기를 내가 간구하노라 <br> 요한삼서 1장 2절',
+        '모든 기도와 간구를 하되 항상 성령 안에서 기도하고 이를 위하여 깨어 구하기를항상 힘쓰며 여러 성도를 위하여 구하라 <br> 에베소서 6장 18절',
+        '소망 중에 즐거워하며 환난 중에 참으며 기도에 항상 힘쓰며 <br> 로마서 12장 12절',
+        '그러나 이 모든 일에 우리를 사랑하시는 이로 말미암아 우리가 넉넉히 이기느니라 <br> 로마서 8장 37절',
+        '내가 또 너희에게 이르노니 구하라 그러면 너희에게 주실 것이요 찾으라 그러면 찾아낼 것이요 문을 두드리라 그러면 너희에게 열릴 것이니<br> 누가복음 11장 9절',
+        '모든 지킬 만한 것 중에 더욱 네 마음을 지키라 생명의 근원이 이에서 남이니라<br>잠언 4장 23절',
+        '너는 내게 부르짖으라 내가 네게 응답하겠 네가 알지 못하는 크고 은밀한 일을 네게 보이리라<br>예레미야 33장 3절',
+        '네 길을 여호와께 맡기라 그를 의지하면 그가 이루시고 네 의를 빛 같이 나타내시며 네 공의를 정오의 빛 같이 하시리로다<br>시편 37편 5-6절'
+        ]
+
+        function nameAdd() {
+            const name = inputText.value.trim();
+                
+            if(name.length == 0)  {
+                    alert("이름을 입력하지 않으셨습니다");
+                    return;
+                }
+
+            firstDiv.classList.add('hide');
+
+            secondDiv.innerHTML += `<h2>${name}님이 뽑은 올해의 말씀</h2>`;
+            
+            const random = Math.floor(Math.random() * 10);
+            const ranBib = bible[random];
+            secondDiv.innerHTML += `<p>${ranBib}</p>`;
+
+            secondDiv.classList.add('show');
+        }
+
+        
+    </script>
+
+</body>
+</html>
