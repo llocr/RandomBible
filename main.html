@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="randomBible.json" type="text/javascript"></script>
+    <title>2023 말씀 뽑기</title>
+</head>
+<body>
+    <div class="outer">
+        <h1 style="font-weight: bolder;  color:black">2023 말씀 뽑기</h1>
+        <div class="first">
+            <input type="text" id="name" placeholder="이름을 작성해주세요" value="">
+            <button type="button" id="addbtn" onclick="nameAdd()">클릭!</button>
+        </div>
+
+        <div class="second">
+            <div class="bibleText"></div>
+            <button type="button" id="rebtn" onclick="getBible()">다시 뽑기</button>
+        </div>
+    </div>
+
+    <script>
+        const inputText = document.getElementById("name");
+        const firstDiv = document.querySelector('.first');
+        const secondDiv = document.querySelector('.second');
+        const bibleDiv = document.querySelector('.bibleText');
+        const $rebtn = document.getElementById('rebtn');
+    
+        let verseData = JSON.parse(JSON.stringify(verseFile));
+
+        function nameAdd() {
+            const name = inputText.value;
+                
+            if(name.length == 0)  {
+                    alert("이름을 입력하지 않으셨습니다");
+                    return;
+                }
+
+            firstDiv.classList.add('hide');
+
+            secondDiv.insertAdjacentHTML('afterbegin', `<h2>${name}님이 뽑은 올해의 말씀</h2>`) ;
+            
+            getBible();
+
+            secondDiv.classList.add('show');
+        }
+        
+        function getBible() {
+            const ranNum = Math.floor(Math.random() * verseData.bibles.length);
+            let verse = verseData.bibles[ranNum].verse;
+            verse = verse.replace(/\n/g, '<br/>');
+            let verseId = verseData.bibles[ranNum].verseid;
+            verseId = verseId.replace(/\n/g, '<br/>');
+            bibleDiv.innerHTML = `<p>${verse}</p>`;
+            bibleDiv.innerHTML += `<p>${verseId}</p>`;
+        }
+        
+    </script>
+
+</body>
+</html>
