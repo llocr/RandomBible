@@ -14,19 +14,19 @@
 <body>
     <div class="outer">
         <h1 style="font-weight: bolder;  color:black">2023 말씀 뽑기</h1>
-        <div class="first">
+        <div class="first"> <!-- 첫번째 div, 이름 입력 후 버튼 누르면 display : none -->
             <input type="text" id="name" placeholder="이름을 작성해주세요" value="">
             <button type="button" id="addbtn" onclick="nameAdd()">클릭!</button>
         </div>
 
-        <div class="second">
-            <div class="text-area">
+        <div class="second"> <!-- 두번째 div, 버튼 클릭 하면 display : block -->
+            <div class="text-area"> <!-- 성경 텍스트 입력-->
                 <div class="bibleText"></div>
             </div>
 
             <div class="button-area">
-                <button type="button" id="rebtn" onclick="getBible()">다시 뽑기</button> <br>
-                <button type="button" id="restart" onclick="window.location.reload()">새로 고침</button>
+                <button type="button" id="rebtn" onclick="getBible()">다시 뽑기</button> <br> <!-- 성경 말씀 다시 뽑는 버튼 -->
+                <button type="button" id="restart" onclick="window.location.reload()">새로 고침</button> <!-- 페이지 리로드 버튼 -->
             </div>
         </div>
     </div>
@@ -39,35 +39,34 @@
         const bibleDiv = document.querySelector('.bibleText');
         const $rebtn = document.getElementById('rebtn');
     
-        let verseData = JSON.parse(JSON.stringify(verseFile));
+        let verseData = JSON.parse(JSON.stringify(verseFile)); //Json 파일 불러오기
 
         function nameAdd() {
-            const name = inputText.value;
+            const name = inputText.value; //input 태그에 담긴 값 저장
                 
             if(name.length == 0)  {
                     alert("이름을 입력하지 않으셨습니다");
                     return;
-                }
+                } // 이름 입력하지 않았을 때 alert 창 띄우기
 
-            firstDiv.classList.add('hide');
+            firstDiv.classList.add('hide'); // 첫번째 div, class를 추가해서 스타일 변경하기
 
             textArea.insertAdjacentHTML('afterbegin', `<h2>${name}님이 뽑은 올해의 말씀</h2>`) ;
             
-            getBible();
+            getBible(); // 함수 실행
 
-            secondDiv.classList.add('show');
+            secondDiv.classList.add('show'); // 두번째 div, class 추가해서 스타일 변경하기
         }
         
         function getBible() {
-            const ranNum = Math.floor(Math.random() * verseData.bibles.length);
-            let verse = verseData.bibles[ranNum].verse;
-            verse = verse.replace(/\n/g, '<br/>');
-            let verseId = verseData.bibles[ranNum].verseid;
-            verseId = verseId.replace(/\n/g, '<br/>');
+            const ranNum = Math.floor(Math.random() * verseData.bibles.length); //bibles의 길이까지 랜덤숫자 나오도록
+            let verse = verseData.bibles[ranNum].verse; // ranNum에 저장된 숫자의 위치에 해당하는 성경말씀 출력
+            verse = verse.replace(/\n/g, '<br/>');  // '\n'을 <br>로 replace하여 변수에 저장
+            let verseId = verseData.bibles[ranNum].verseid; // ranNum에 저장된 숫자의 위치에 해당하는 말씀장절 출력
+            verseId = verseId.replace(/\n/g, '<br/>'); //'\n'을 <br>로 replace 하여 변수에 저장
             bibleDiv.innerHTML = `<p>${verse}</p>`;
-            bibleDiv.innerHTML += `<p style="text-weight : bolder">${verseId}</p>`;
+            bibleDiv.innerHTML += `<p style="text-weight : bolder">${verseId}</p>`; //bibleDiv에 HTML 형식으로 추가하기
         }
-        
     </script>
 
 </body>
