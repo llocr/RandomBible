@@ -20,8 +20,14 @@
         </div>
 
         <div class="second">
-            <div class="bibleText"></div>
-            <button type="button" id="rebtn" onclick="getBible()">다시 뽑기</button>
+            <div class="text-area">
+                <div class="bibleText"></div>
+            </div>
+
+            <div class="button-area">
+                <button type="button" id="rebtn" onclick="getBible()">다시 뽑기</button> <br>
+                <button type="button" id="restart" onclick="window.location.reload()">새로 고침</button>
+            </div>
         </div>
     </div>
 
@@ -29,6 +35,7 @@
         const inputText = document.getElementById("name");
         const firstDiv = document.querySelector('.first');
         const secondDiv = document.querySelector('.second');
+        const textArea = document.querySelector('.text-area');
         const bibleDiv = document.querySelector('.bibleText');
         const $rebtn = document.getElementById('rebtn');
     
@@ -44,7 +51,7 @@
 
             firstDiv.classList.add('hide');
 
-            secondDiv.insertAdjacentHTML('afterbegin', `<h2>${name}님이 뽑은 올해의 말씀</h2>`) ;
+            textArea.insertAdjacentHTML('afterbegin', `<h2>${name}님이 뽑은 올해의 말씀</h2>`) ;
             
             getBible();
 
@@ -58,7 +65,7 @@
             let verseId = verseData.bibles[ranNum].verseid;
             verseId = verseId.replace(/\n/g, '<br/>');
             bibleDiv.innerHTML = `<p>${verse}</p>`;
-            bibleDiv.innerHTML += `<p>${verseId}</p>`;
+            bibleDiv.innerHTML += `<p style="text-weight : bolder">${verseId}</p>`;
         }
         
     </script>

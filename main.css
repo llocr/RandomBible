@@ -37,18 +37,26 @@ body {
 .second {
     text-align: center;
     display: none;
-    width: 800px;
-    background-color: rgba(255, 255, 255, 0.655);
-    border-radius: 15px;
+    width: 700px;
 }
 
-#rebtn {
-    width: 120px;
+.text-area {
+    background-color: rgba(255, 255, 255, 0.655);
+    border-radius: 15px;
+    padding: 8px;
+}
+
+.button-area {
+    margin-top: 8px;
+}
+
+#rebtn, #restart {
+    width: 150px;
     height: 40px;
     border-radius: 10px;
     font-size: medium;
     font-family: 'Gowun Batang';
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .hide {
